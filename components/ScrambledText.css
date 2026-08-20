@@ -1,0 +1,10 @@
+.text-block {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+.char {
+  will-change: transform;
+  display: inline-block;
+}
