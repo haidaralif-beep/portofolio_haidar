@@ -1,0 +1,27 @@
+npm notice run portfolio-haidar@0.0.0 dev
+npm notice run next dev
+▲ Next.js 16.3.0 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.2.184:3000
+✓ Ready in 1388ms
+✓ Running next.config took 26ms
+
+ GET / 200 in 975ms (next.js: 591ms, application-code: 384ms)
+ GET / 200 in 95ms (next.js: 13ms, application-code: 83ms)
+ GET / 200 in 126ms (next.js: 25ms, application-code: 101ms)
+✓ Compiled in 389ms
+✓ Compiled in 226ms
+ GET / 200 in 152ms (next.js: 46ms, application-code: 105ms)
+✓ Compiled in 266ms
+ GET / 200 in 82ms (next.js: 30ms, application-code: 52ms)
+✓ Compiled in 304ms
+ GET / 200 in 267ms (next.js: 37ms, application-code: 230ms)
+✓ Compiled in 299ms
+ GET / 200 in 104ms (next.js: 25ms, application-code: 79ms)
+✓ Compiled in 199ms
+ GET / 200 in 74ms (next.js: 24ms, application-code: 50ms)
+✓ Compiled in 160ms
+ GET / 200 in 166ms (next.js: 26ms, application-code: 139ms)
+✓ Compiled in 125ms
+ GET / 200 in 106ms (next.js: 20ms, application-code: 87ms)
+ GET / 200 in 198ms (next.js: 32ms, application-code: 166ms)
