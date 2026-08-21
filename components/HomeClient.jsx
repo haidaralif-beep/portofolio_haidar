@@ -173,6 +173,7 @@ function useScrollReveal() {
 }
 
 function Navbar({ active }) {
+  const [menuOpen, setMenuOpen] = useState(false)
   const activeIndex = NAV_LINKS.findIndex((link) => link.href.slice(1) === active)
 
   return (
@@ -181,7 +182,11 @@ function Navbar({ active }) {
       id="navbar"
     >
       <div className="flex justify-between items-center max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-sm w-full">
-        <a className="font-display text-headline-md tracking-tighter text-on-background hover:text-primary-container transition-colors" href="#home">
+        <a
+          className="font-display text-headline-md tracking-tighter text-on-background hover:text-primary-container transition-colors"
+          href="#home"
+          onClick={() => setMenuOpen(false)}
+        >
           HAIDAR.
         </a>
         <div className="hidden md:block">
@@ -203,20 +208,51 @@ function Navbar({ active }) {
         >
           Let&apos;s Talk
         </a>
-        <div className="md:hidden flex items-center">
-          <GooeyNav
-            items={NAV_LINKS}
-            particleCount={10}
-            particleDistances={[60, 5]}
-            particleR={80}
-            initialActiveIndex={activeIndex >= 0 ? activeIndex : 0}
-            activeIndex={activeIndex >= 0 ? activeIndex : 0}
-            animationTime={500}
-            timeVariance={200}
-            colors={[1, 2, 3, 4]}
-          />
-        </div>
+
+        {/* Mobile Hamburger Button */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="md:hidden text-on-background p-2 focus:outline-none"
+          aria-label="Toggle menu"
+        >
+          <span className="material-symbols-outlined text-3xl">
+            {menuOpen ? 'close' : 'menu'}
+          </span>
+        </button>
       </div>
+
+      {/* Mobile Dropdown Menu Overlay */}
+      {menuOpen && (
+        <div className="md:hidden bg-background/95 backdrop-blur-2xl border-b border-outline-variant/30 px-margin-mobile py-6 flex flex-col gap-4 animate-in fade-in slide-in-from-top-4 duration-200">
+          {NAV_LINKS.map((link) => {
+            const isActive = link.href.slice(1) === active
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className={`font-label-mono text-body-lg tracking-wider py-2 border-b border-outline-variant/10 flex items-center justify-between transition-colors ${
+                  isActive
+                    ? 'text-primary-container font-bold'
+                    : 'text-on-surface-variant hover:text-on-background'
+                }`}
+              >
+                <span>{link.label}</span>
+                {isActive && (
+                  <span className="w-2 h-2 rounded-full bg-primary-container shadow-[0_0_8px_rgba(183,243,74,0.8)]" />
+                )}
+              </a>
+            )
+          })}
+          <a
+            className="btn-primary mt-2 w-full text-center py-3 rounded-sm font-label-mono text-label-mono tracking-widest font-bold block"
+            href="#contact"
+            onClick={() => setMenuOpen(false)}
+          >
+            LET&apos;S TALK
+          </a>
+        </div>
+      )}
     </nav>
   )
 }
@@ -318,7 +354,7 @@ function Hero() {
 
 function About() {
   return (
-    <section className="py-xl px-margin-mobile md:px-margin-desktop relative" id="about">
+    <section className="py-lg md:py-xl px-margin-mobile md:px-margin-desktop relative" id="about">
       <div className="max-w-[1440px] w-full mx-auto">
         <SectionHeading number="01" title="ABOUT ME" />
         <div className="grid grid-cols-4 md:grid-cols-12 gap-gutter">
@@ -380,7 +416,7 @@ function About() {
 
 function Skills() {
   return (
-    <section className="py-xl px-margin-mobile md:px-margin-desktop relative bg-surface/50" id="skills">
+    <section className="py-lg md:py-xl px-margin-mobile md:px-margin-desktop relative bg-surface/50" id="skills">
       <div className="max-w-[1440px] w-full mx-auto">
         <SectionHeading number="02" title="SKILLS" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -414,7 +450,7 @@ function Skills() {
 
 function Journey() {
   return (
-    <section className="py-xl px-margin-mobile md:px-margin-desktop relative" id="journey">
+    <section className="py-lg md:py-xl px-margin-mobile md:px-margin-desktop relative" id="journey">
       <div className="max-w-[1440px] w-full mx-auto">
         <SectionHeading number="03" title="JOURNEY" />
         <div className="max-w-3xl mx-auto">
@@ -505,7 +541,7 @@ function ProjectRow({ project }) {
 
 function Projects() {
   return (
-    <section className="py-xl px-margin-mobile md:px-margin-desktop relative bg-surface/50" id="projects">
+    <section className="py-lg md:py-xl px-margin-mobile md:px-margin-desktop relative bg-surface/50" id="projects">
       <div className="max-w-[1440px] w-full mx-auto">
         <SectionHeading number="04" title="PROJECTS" />
         <div className="space-y-16">
@@ -520,7 +556,7 @@ function Projects() {
 
 function Services() {
   return (
-    <section className="py-xl px-margin-mobile md:px-margin-desktop relative" id="services">
+    <section className="py-lg md:py-xl px-margin-mobile md:px-margin-desktop relative" id="services">
       <div className="max-w-[1440px] w-full mx-auto">
         <SectionHeading number="05" title="SERVICES" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -547,7 +583,7 @@ function Services() {
 
 function Contact() {
   return (
-    <section className="py-xl px-margin-mobile md:px-margin-desktop relative bg-surface/50" id="contact">
+    <section className="py-lg md:py-xl px-margin-mobile md:px-margin-desktop relative bg-surface/50" id="contact">
       <div className="max-w-[1440px] w-full mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
           <div className="reveal">
